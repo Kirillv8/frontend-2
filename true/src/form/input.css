@@ -1,0 +1,31 @@
+/* input {
+  width: 300px;
+  font-size: 13px;
+  padding: 6px 0 4px 10px;
+  border: 1px solid #cecece;
+  background: #f6f6f6;
+  border-radius: 8px;
+} */
+
+.input-under-button {
+  width: 300px;
+  font-size: 16px;
+  padding: 10px 15px;
+  margin-top: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #fff;
+  transition: border-color 0.3s ease;
+}
+.input-under-button:focus {
+  border-color: #4fd1c5;
+}
+
+@keyframes ring {
+  0% {
+    box-shadow: 0 0 60px rgba(0, 255, 203, 0.64);
+  }
+  100% {
+    box-shadow: 0 0 120px rgba(0, 255, 203, 0);
+  }
+}
