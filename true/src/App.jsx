@@ -2,7 +2,6 @@ import React from "react";
 import AuthModal from "./AuthModal";
 import Header from "./Header";
 import Filter from "./Filter";
-import Menu from "./Menu";
 
 const App = () => {
   return (
@@ -10,7 +9,6 @@ const App = () => {
       <Header />
       <Filter />
       <AuthModal />
-      <Menu />
     </>
   );
 };
