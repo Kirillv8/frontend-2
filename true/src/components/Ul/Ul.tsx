@@ -1,20 +1,23 @@
 import React from "react";
 import Value from "../../types/type";
+import "./Ul.css";
 
-interface UlProps extends Value {}
+interface UlProps {
+  todo: string[];
+}
 
-const Ul: React.FC<UlProps> = ({ value }) => {
-
-  const [...rest] = value;
-
+const Ul: React.FC<UlProps> = ({ todo }) => {
   return (
-    <>
+    <div className="container-ul">
       <ul>
-        {rest.map((element, index) => {
-          return <li key={index}>{element}</li>;
-        })}
+        {todo.map((element, index) => (
+          <li key={index}>
+            <span>{element}</span>
+            <button className="image-btn"></button>
+          </li>
+        ))}
       </ul>
-    </>
+    </div>
   );
 };
 

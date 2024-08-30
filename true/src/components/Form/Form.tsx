@@ -1,12 +1,25 @@
 import React, { useState } from "react";
 import Ul from "../Ul/Ul";
+import "./Form.css";
 
 const Form = () => {
   const [value, setValue] = useState("");
-  const [todo, setTodo] = useState([value]);
+  const [todo, setTodo] = useState<string[]>([]);
+
+  const showTask = (todo: any): void => {
+    setTodo([...todo, value, { id: Date.now() }]);
+  };
 
   const handleSubmit = (event: React.FormEvent<EventTarget>) => {
     event.preventDefault();
+
+    if (todo) {
+      console.log(todo);
+      showTask(todo);
+    } else {
+      alert("Добавьте задачу!");
+    }
+
     setValue("");
   };
 
@@ -15,21 +28,18 @@ const Form = () => {
     console.log("событие работает");
   };
 
-  const showTask = (value: any): void => {
-    setTodo(todo);
-  };
-
   return (
     <>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="form">
         <input
           type="text"
-          placeholder="введите текст"
+          placeholder="Введите текст"
           value={value}
           onChange={handleChange}
+          className="input"
         />
       </form>
-      <Ul value={value} />
+      <Ul todo={todo} />
     </>
   );
 };
