@@ -3,16 +3,22 @@ import Value from "../../types/type";
 import "./Ul.css";
 
 interface UlProps {
-  todo: string[];
+  todo: { id: number; value: string }[];
+  deleteItem: (itemId: number) => void;
 }
 
-const Ul: React.FC<UlProps> = ({ todo }) => {
+const Ul: React.FC<UlProps> = ({ todo, deleteItem }) => {
   return (
     <div className="container-ul">
       <ul>
-        {todo.map((element, index) => (
-          <li key={index}>
-            <span>{element}</span>
+        {todo.map((element) => (
+          <li
+            key={element.id}
+            onClick={() => {
+              deleteItem(element.id);
+            }}
+          >
+            <span>{element.value}</span>
             <button className="image-btn"></button>
           </li>
         ))}

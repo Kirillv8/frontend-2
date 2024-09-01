@@ -4,28 +4,29 @@ import "./Form.css";
 
 const Form = () => {
   const [value, setValue] = useState("");
-  const [todo, setTodo] = useState<string[]>([]);
-
-  const showTask = (todo: any): void => {
-    setTodo([...todo, value, { id: Date.now() }]);
-  };
+  const [todo, setTodo] = useState<{ id: number; value: string }[]>([]);
 
   const handleSubmit = (event: React.FormEvent<EventTarget>) => {
     event.preventDefault();
-
-    if (todo) {
-      console.log(todo);
-      showTask(todo);
+    if (value.trim()) {
+      setTodo([...todo, { id: Date.now(), value }]);
+      setValue("");
     } else {
       alert("Добавьте задачу!");
     }
-
-    setValue("");
   };
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setValue(event.target.value);
     console.log("событие работает");
+  };
+
+  const deleteItem = (itemId: number) => {
+    setTodo(
+      todo.filter((item) => {
+        return item.id !== item.id;
+      })
+    );
   };
 
   return (
@@ -39,7 +40,7 @@ const Form = () => {
           className="input"
         />
       </form>
-      <Ul todo={todo} />
+      <Ul todo={todo} deleteItem={deleteItem} />
     </>
   );
 };
